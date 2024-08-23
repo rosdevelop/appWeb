@@ -26,13 +26,13 @@ jobs:
         run: nuget restore ProyectoVenta.csproj
 
       - name: Publish to folder
-        run: msbuild ProyectoVenta.csproj /nologo /verbosity:m /t:Build /p:OutDir=\\published\\ /p:DeployOnBuild=true /p:PublishProfile=YourPublishProfile.pubxml
+        run: msbuild ProyectoVenta.csproj /nologo /verbosity:m /t:Build /p:OutDir=published /p:DeployOnBuild=true /p:PublishProfile=YourPublishProfile.pubxml
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: ASP-app
-          path: '/published/**'
+          path: 'published/**'
 
   deploy:
     runs-on: windows-latest
@@ -63,3 +63,4 @@ jobs:
           app-name: 'sistemasti'
           slot-name: 'Production'
           package: './ASP-app'
+
